@@ -223,7 +223,7 @@ async function loadRanking(){
 }
 
 load();
-if(sb){sb.auth.getSession().then(({data})=>setSession(data.session));sb.auth.onAuthStateChange((_e,s)=>setSession(s))}
+if(sb){sb.auth.getSession().then(({data})=>setSession(data.session));sb.auth.onAuthStateChange((_e,s)=>{setTimeout(()=>setSession(s),0)})}
 </script>
 </body>
 </html>
