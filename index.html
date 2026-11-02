@@ -57,7 +57,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:va
 .b-wa{background:#25d366;color:#fff}
 footer{background:var(--nv);color:#fff;border-radius:20px 20px 0 0;padding:26px 20px;text-align:center;font-size:12px;color:#a9b9d8}
 footer b{display:block;font:800 18px 'Plus Jakarta Sans';color:#fff;margin-bottom:4px}
-nav{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 -2px 12px rgba(11,28,48,.08);display:flex;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom,0px))}
+nav{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 -2px 12px rgba(11,28,48,.08);justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom,0px))}
 nav a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;color:var(--mut);text-decoration:none;min-width:60px}
 nav a i{font-style:normal;font-size:20px}nav a:first-child{color:var(--or)}
 .panel{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:28px}
@@ -119,7 +119,7 @@ const row=r=>({id:r.id,name:r.nome,price:Number(r.preco),category:r.categoria,em
 async function load(){
   if(!sb){$('list').innerHTML='<div class="empty">Cole a URL e a chave do Supabase no início do script para carregar os produtos.</div>';return}
   const {data,error}=await sb.from('produtos').select('*').order('nome');
-  if(error){console.error(error);$('list').innerHTML='<div class="empty">Não foi possível carregar os produtos.</div>';return}
+  if(error){console.error(error);$('list').innerHTML='<div class="empty">Não foi possível carregar os produtos.<br><small>'+esc(error.message||'')+'</small></div>';return}
   products=data.map(row);render();listM();
 }
 function render(){
